@@ -4,14 +4,12 @@ on:
   pull_request:
     branches:
       - master
-  schedule:
-    # * is a special character in YAML so you have to quote this string
-    - cron:  '0 0 1 1 *'
-  workflow_dispatch: 
-    
-# on:
-#   [push]
-
+  workflow_dispatch:
+    inputs:
+      new_version:
+        description: 'new project version'
+        required: true
+        default: 'warning'
 
 jobs:
   test-logs-files:
@@ -30,7 +28,7 @@ jobs:
     - name: Run check of what's in pwd
       run: ls
     - name: Run a one-line script
-      run: python ./.github/workflows/todo_List.py
+      run: python ./.github/workflows/todo_List.py github.event.inputs.new_version
     - name: check for changes
       run: git status
     - name: stage changed files
