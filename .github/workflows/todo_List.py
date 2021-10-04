@@ -11,6 +11,7 @@ import datetime
 import sys
 
 print(sys.version)
+print("len argv", len(sys.argv), " argv: ", sys.argv)
 
 # Pathway to folder I want to look through.
 
