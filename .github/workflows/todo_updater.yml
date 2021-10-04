@@ -28,7 +28,7 @@ jobs:
     - name: Run check of what's in pwd
       run: ls
     - name: Run a one-line script
-      run: python ./.github/workflows/todo_List.py '{{github.event.inputs.new_version}}'
+      run: python ./.github/workflows/todo_List.py '${{github.event.inputs.new_version}}'
     - name: check for changes
       run: git status
     - name: stage changed files
