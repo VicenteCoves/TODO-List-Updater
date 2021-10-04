@@ -1,9 +1,13 @@
 name: UpdateTODO
 
 on:
+  pull_request:
+    branches:
+      - master
   schedule:
     # * is a special character in YAML so you have to quote this string
-    - cron:  '0 0 1 1 *' 
+    - cron:  '0 0 1 1 *'
+  workflow_dispatch: 
     
 # on:
 #   [push]
@@ -12,10 +16,15 @@ on:
 jobs:
   build:
 
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     
     steps:
-    - uses: actions/checkout@v1
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: Install Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: "3.8"
     - name: Run check of pwd
       run: pwd
     - name: Run check of what's in pwd

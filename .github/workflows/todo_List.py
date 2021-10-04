@@ -8,14 +8,19 @@ Step 3: copy each line with a #TODO to a TODO.txt
 
 import os
 import datetime
+import sys
+
+print(sys.version)
 
 # Pathway to folder I want to look through.
 
 rootdir = os.getcwd()
+print(rootdir)
 # '/Users/chandlerkilpatrick/.julia/dev/SHERPA'
 
 # Pathway to file that is collecting the TODO list.
 text_file_location = rootdir + "/TODO.txt"
+print(text_file_location)
 # '/Users/chandlerkilpatrick/.julia/dev/SHERPA/TODO.txt'
 
 # Opens and writes the TODO.txt file.
@@ -25,28 +30,11 @@ TODO_file = open(text_file_location, 'w')
 possible_TODO = ["#TODO", "# TODO:", "# TODO", "TODO:"]
 
 
-for subdir, dirs, files in os.walk(rootdir):
-    
+for subdir, dirs, files in os.walk(rootdir):    
     for file in files:
-        
-        if str(file).endswith(".jl"):
-            
-            open_file = open(os.path.join(subdir, file), 'r')
-            line_counter = 0
-            for line in open_file:
-                
-                for item in possible_TODO:
-                    
-                    if line.__contains__(item):
-                        line = line.strip()
-                        
-                        TODO_file.write("File Name: " + file + "\n")
-                        TODO_file.write("Line Number: " + str(line_counter) + "\n")
-                        TODO_file.write(line + "\n" + "\n")
-                        break
-                line_counter += 1
-            # Closes open_file       
-            open_file.close()
+        if True:
+            TODO_file.write(f"path {subdir}\n")
+            TODO_file.write(f"file {file}\n")
             
 
 # end of all for loops
